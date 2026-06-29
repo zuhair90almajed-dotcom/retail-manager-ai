@@ -9,3 +9,14 @@ function quickAction(){alert('الإجراءات السريعة:\n1- إضافة 
 function searchSystem(){console.log(document.getElementById('search').value)}
 function addTask(){const v=document.getElementById('taskInput').value.trim();if(!v)return;const li=document.createElement('li');li.textContent=v;document.getElementById('taskList').appendChild(li);document.getElementById('taskInput').value=''}
 function askAI(){const q=document.getElementById('aiInput').value.trim();if(!q)return;let a='حسب البيانات التجريبية، يوصى بزيارة فرع سترة بسبب نقص المشروبات وانخفاض الأداء.';if(q.includes('مبيعات'))a='مبيعات اليوم BD 34,250 وأفضل فرع هو الجنبية.';if(q.includes('مخزون'))a='يوجد نقص في مياه نستله، الكمية الحالية 12 فقط.';document.getElementById('chat').innerHTML+='\n\n👤 '+q+'\n🤖 '+a;document.getElementById('aiInput').value=''}
+function toggleNotifications(){
+
+    const panel = document.getElementById("notificationPanel");
+
+    if(panel.style.display==="none"){
+        panel.style.display="block";
+    }else{
+        panel.style.display="none";
+    }
+
+}
