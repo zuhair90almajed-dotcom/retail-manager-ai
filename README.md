@@ -1,2 +1,15 @@
-# retail-manager-ai
-AI-powered Retail Management System
+# Retail Manager AI
+
+نسخة تجريبية أولية لنظام إدارة السوبرماركت والفروع.
+
+## بيانات الدخول
+- Username: admin
+- Password: 1234
+
+## النشر على Netlify
+ارفع الملفات إلى GitHub، وسيقوم Netlify بالنشر تلقائياً إذا كان المستودع مربوطاً.
+
+## الملفات
+- `index.html`: التطبيق كامل.
+- `css/style.css`: التصميم.
+- `js/app.js`: التنقل والتفاعل التجريبي.
