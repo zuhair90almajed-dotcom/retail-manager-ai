@@ -65,3 +65,72 @@ table{width:100%;border-collapse:collapse}th,td{text-align:right;padding:14px;bo
 .notify-item.info{
     background:#e8f3ff;
 }
+.quick-actions{
+
+    position:absolute;
+
+    top:170px;
+
+    left:30px;
+
+    width:280px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+    z-index:999;
+
+}
+
+.quick-actions h3{
+
+    margin-top:0;
+
+    margin-bottom:18px;
+
+}
+
+.quick-btn{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f3f4f6;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.quick-btn:hover{
+
+    background:#22c55e;
+
+    color:white;
+
+}
+
+.close-btn{
+
+    background:#ef4444;
+
+    color:white;
+
+}
