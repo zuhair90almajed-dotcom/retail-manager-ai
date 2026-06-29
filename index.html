@@ -6,318 +6,140 @@
   <title>Retail Manager AI</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="login-body">
 
-  <!-- Login -->
-  <section id="login" class="login-card">
-    <div class="brand">Retail Manager <span>AI</span></div>
-    <h2>مساعد المدير الذكي</h2>
-    <p class="sub">نسخة منظمة وقابلة للتطوير على GitHub وNetlify.</p>
+<section id="login" class="login-card">
+  <div class="brand">Retail Manager <span>AI</span></div>
+  <h2>مساعد المدير الذكي</h2>
+  <p class="sub">نسخة نظيفة ومنظمة جاهزة للرفع على GitHub وNetlify.</p>
 
-    <form onsubmit="login(event)">
-      <div class="field">
-        <label>اسم المستخدم</label>
-        <input id="username" value="admin">
+  <form onsubmit="login(event)">
+    <label>اسم المستخدم</label>
+    <input id="username" value="admin">
+
+    <label>كلمة المرور</label>
+    <input id="password" type="password" value="1234">
+
+    <button class="btn">دخول إلى لوحة التحكم</button>
+  </form>
+
+  <p class="sub">بيانات الدخول: admin / 1234</p>
+</section>
+
+<div id="app" class="layout" style="display:none">
+  <aside class="sidebar">
+    <h2>Retail Manager <span>AI</span></h2>
+    <a class="active" onclick="showPage('dashboard', this)">🏠 لوحة التحكم</a>
+    <a onclick="showPage('employees', this)">👥 الموظفون</a>
+    <a onclick="showPage('branches', this)">🏬 الفروع</a>
+    <a onclick="showPage('tasks', this)">✅ المهام</a>
+    <a onclick="showPage('inventory', this)">📦 المخزون</a>
+    <a onclick="showPage('ai', this)">🤖 المساعد الذكي</a>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div>
+        <h1>صباح الخير، أستاذ زهير 👋</h1>
+        <p><span id="today"></span> | <span id="clock"></span></p>
+      </div>
+      <div class="actions">
+        <button onclick="toggleDark()" class="btn light">🌙</button>
+        <button onclick="logout()" class="btn danger">خروج</button>
+      </div>
+    </header>
+
+    <section class="quick">
+      <input id="search" placeholder="🔍 ابحث عن فرع، موظف، منتج، مهمة..." onkeyup="searchSystem()">
+      <button onclick="toggleNotify()" class="btn light">🔔 4</button>
+      <button onclick="quickAction()" class="btn">⚡ إجراء سريع</button>
+    </section>
+
+    <div id="notify" class="notify" style="display:none">
+      🔴 نقص مياه نستله - فرع سترة<br>
+      🟠 تأخر تنفيذ عرض Pepsi<br>
+      🔴 ارتفاع مرتجعات دمستان<br>
+      🟢 الجنبية أفضل فرع اليوم
+    </div>
+
+    <section id="dashboard" class="page active">
+      <div class="cards">
+        <div class="card"><p>مبيعات اليوم</p><h2>BD 34,250</h2><span class="green">+8% عن أمس</span></div>
+        <div class="card"><p>العملاء</p><h2>2,135</h2><span class="green">+4%</span></div>
+        <div class="card"><p>المهام المفتوحة</p><h2>18</h2><span class="green">6 مكتملة اليوم</span></div>
+        <div class="card"><p>التنبيهات</p><h2>4</h2><span class="red">تحتاج متابعة</span></div>
       </div>
 
-      <div class="field">
-        <label>كلمة المرور</label>
-        <input id="password" type="password" value="1234">
+      <div class="card ai-card">
+        <h2>🧠 الذكاء التنفيذي</h2>
+        <h3>توصية اليوم: زيارة فرع سترة</h3>
+        <p>السبب: انخفاض المبيعات، نقص قسم المشروبات، ووجود تنبيهات مرتجعات.</p>
       </div>
 
-      <button class="btn" style="width:100%">دخول إلى لوحة التحكم</button>
-    </form>
-
-    <p class="sub">بيانات الدخول: admin / 1234</p>
-  </section>
-
-  <!-- App -->
-  <div id="app" class="layout" style="display:none">
-
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="logo-box">
-        <div class="avatar">AI</div>
-        <div class="side-title">Retail Manager <span>AI</span></div>
-      </div>
-
-      <nav class="nav">
-        <a href="#" data-page="dashboard" class="active">🏠 لوحة التحكم</a>
-        <a href="#" data-page="executive">🎯 مركز القرار</a>
-        <a href="#" data-page="employees">👥 الموظفون</a>
-        <a href="#" data-page="branches">🏬 الفروع</a>
-        <a href="#" data-page="tasks">✅ المهام</a>
-        <a href="#" data-page="inventory">📦 المخزون</a>
-        <a href="#" data-page="sales">📈 المبيعات</a>
-        <a href="#" data-page="promotions">🛒 العروض</a>
-        <a href="#" data-page="reports">📄 التقارير</a>
-        <a href="#" data-page="sop">📚 SOP</a>
-        <a href="#" data-page="ai">🤖 المساعد الذكي</a>
-        <a href="#" data-page="settings">⚙️ الإعدادات</a>
-      </nav>
-    </aside>
-
-    <!-- Main -->
-    <main class="main">
-
-      <!-- Topbar -->
-      <div class="topbar">
-        <button class="btn secondary mobile-menu" onclick="toggleMenu()">☰</button>
-
-        <div class="topbar-right">
-          <div>
-            <h1 id="welcomeTitle">صباح الخير، أستاذ زهير 👋</h1>
-            <div class="hint">
-              <span id="todayDate"></span>
-              |
-              <span id="clock"></span>
-              |
-              آخر تحديث:
-              <span id="lastUpdate">الآن</span>
-            </div>
-          </div>
-
-          <div class="profile-actions">
-            <button class="btn secondary" onclick="toggleDarkMode()">🌙</button>
-            <div class="profile-card">
-              👤 <b>Zuhair Almajed</b><br>
-              <small>Operations Manager</small>
-            </div>
-            <button class="btn secondary" onclick="logout()">خروج</button>
+      <div class="grid">
+        <div class="card">
+          <h2>المبيعات الأسبوعية</h2>
+          <div class="bars">
+            <div style="height:60%"></div><div style="height:80%"></div><div style="height:50%"></div>
+            <div style="height:75%"></div><div style="height:45%"></div><div style="height:65%"></div><div style="height:55%"></div>
           </div>
         </div>
-      </div>
-
-      <!-- Quickbar -->
-      <div class="card quickbar-card">
-        <div class="quickbar">
-          <input id="globalSearch" placeholder="🔍 ابحث عن فرع، موظف، منتج، مهمة..." onkeyup="globalSearch()">
-          <button class="btn secondary" onclick="toggleNotifications()">🔔 <span id="notifyCount">4</span></button>
-          <button class="btn blue" onclick="quickAction()">⚡ إجراء سريع</button>
-        </div>
-
-        <div id="notificationsBox" class="notifications-box" style="display:none">
-          <div>🔴 نقص مياه نستله - فرع سترة</div>
-          <div>🟠 تأخر تنفيذ عرض Pepsi</div>
-          <div>🔴 ارتفاع مرتجعات دمستان</div>
-          <div>🟢 الجنبية أفضل فرع اليوم</div>
-        </div>
-      </div>
-
-      <!-- Dashboard -->
-      <section id="dashboard" class="page active">
-        <div class="grid kpis">
-          <div class="card kpi">
-            <div class="label">مبيعات اليوم</div>
-            <div class="value">BD 34,250</div>
-            <div class="up">+8% عن أمس</div>
-          </div>
-
-          <div class="card kpi">
-            <div class="label">العملاء</div>
-            <div class="value">2,135</div>
-            <div class="up">+4%</div>
-          </div>
-
-          <div class="card kpi">
-            <div class="label">المهام المفتوحة</div>
-            <div class="value">18</div>
-            <div class="up">6 مكتملة اليوم</div>
-          </div>
-
-          <div class="card kpi">
-            <div class="label">التنبيهات</div>
-            <div class="value">4</div>
-            <div class="danger">تحتاج متابعة</div>
-          </div>
-        </div>
-
-        <br>
-
-        <div class="card ai-decision">
-          <h2>🧠 الذكاء التنفيذي</h2>
-          <h3>توصية اليوم: زيارة فرع سترة</h3>
-          <p>السبب: انخفاض المبيعات، نقص قسم المشروبات، ووجود تنبيهات مرتجعات.</p>
-          <button class="btn">عرض خطة العمل</button>
-        </div>
-
-        <br>
-
-        <div class="grid two">
-          <div class="card">
-            <h2>المبيعات الأسبوعية</h2>
-            <div class="bars">
-              <div class="bar" style="height:65%"></div>
-              <div class="bar" style="height:82%"></div>
-              <div class="bar" style="height:58%"></div>
-              <div class="bar" style="height:72%"></div>
-              <div class="bar" style="height:46%"></div>
-              <div class="bar" style="height:55%"></div>
-              <div class="bar" style="height:40%"></div>
-            </div>
-          </div>
-
-          <div class="card">
-            <h2>تنبيهات المدير</h2>
-            <div class="alert"><span>نقص في قسم المشروبات - فرع سترة</span><b class="pill red">عاجل</b></div>
-            <div class="alert"><span>تأخير في تنفيذ عروض نهاية الأسبوع</span><b class="pill amber">متابعة</b></div>
-            <div class="alert"><span>ارتفاع مرتجعات الكاشير في دمستان</span><b class="pill red">عاجل</b></div>
-            <div class="alert"><span>أفضل فرع اليوم: الجنبية</span><b class="pill green">ممتاز</b></div>
-          </div>
-        </div>
-
-        <br>
 
         <div class="card">
-          <h2>Heat Map حسب الساعة</h2>
-          <div class="heat">
-            <div class="low">08:00<br>منخفض</div>
-            <div class="low">09:00<br>منخفض</div>
-            <div class="med">11:00<br>متوسط</div>
-            <div class="med">13:00<br>متوسط</div>
-            <div class="high">18:00<br>مرتفع</div>
-            <div class="peak">20:00<br>ذروة</div>
-          </div>
+          <h2>تنبيهات المدير</h2>
+          <p>🔴 نقص في قسم المشروبات - فرع سترة</p>
+          <p>🟠 تأخير في تنفيذ عروض نهاية الأسبوع</p>
+          <p>🔴 ارتفاع مرتجعات الكاشير في دمستان</p>
+          <p>🟢 أفضل فرع اليوم: الجنبية</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Executive -->
-      <section id="executive" class="page">
-        <div class="grid three">
-          <div class="card">
-            <h2>قرار اليوم</h2>
-            <p>يوصى بزيارة فرع سترة بسبب انخفاض المبيعات ونقص قسم المشروبات.</p>
-            <button class="btn">اعتماد التوصية</button>
-          </div>
+    <section id="employees" class="page card">
+      <h2>الموظفون</h2>
+      <table>
+        <tr><th>الاسم</th><th>الرقم</th><th>الفرع</th><th>الوظيفة</th><th>الحالة</th></tr>
+        <tr><td>أحمد محمد</td><td>EMP001</td><td>سترة</td><td>كاشير</td><td>حاضر</td></tr>
+        <tr><td>حسن علي</td><td>EMP002</td><td>دمستان</td><td>مشرف</td><td>متأخر</td></tr>
+      </table>
+    </section>
 
-          <div class="card">
-            <h2>أفضل فرع</h2>
-            <p class="value">الجنبية</p>
-            <p class="up">BD 8,520</p>
-          </div>
+    <section id="branches" class="page">
+      <div class="cards">
+        <div class="card"><h2>سترة</h2><p>BD 7,940</p><span>تحتاج متابعة</span></div>
+        <div class="card"><h2>الجنبية</h2><p>BD 8,520</p><span class="green">ممتاز</span></div>
+        <div class="card"><h2>دمستان</h2><p>BD 5,220</p><span class="red">تنبيه</span></div>
+      </div>
+    </section>
 
-          <div class="card">
-            <h2>أضعف فرع</h2>
-            <p class="value">دمستان</p>
-            <p class="danger">انخفاض 11%</p>
-          </div>
-        </div>
-      </section>
+    <section id="tasks" class="page card">
+      <h2>المهام</h2>
+      <input id="taskInput" placeholder="اكتب مهمة جديدة">
+      <button class="btn" onclick="addTask()">إضافة</button>
+      <ul id="taskList">
+        <li>ترتيب قسم الألبان - سترة</li>
+        <li>تنفيذ عرض Pepsi - دمستان</li>
+      </ul>
+    </section>
 
-      <!-- Employees -->
-      <section id="employees" class="page card">
-        <h2>الموظفون</h2>
-        <table class="table">
-          <tr><th>الاسم</th><th>الرقم</th><th>الفرع</th><th>الوظيفة</th><th>الحالة</th></tr>
-          <tr><td>أحمد محمد</td><td>EMP001</td><td>سترة</td><td>كاشير</td><td><span class="pill green">حاضر</span></td></tr>
-          <tr><td>حسن علي</td><td>EMP002</td><td>دمستان</td><td>مشرف</td><td><span class="pill amber">متأخر</span></td></tr>
-          <tr><td>فاطمة يوسف</td><td>EMP003</td><td>الجنبية</td><td>خدمة زبائن</td><td><span class="pill green">حاضر</span></td></tr>
-        </table>
-      </section>
+    <section id="inventory" class="page card">
+      <h2>المخزون</h2>
+      <table>
+        <tr><th>المنتج</th><th>القسم</th><th>الكمية</th><th>الحالة</th></tr>
+        <tr><td>مياه نستله</td><td>مشروبات</td><td>12</td><td>ناقص</td></tr>
+        <tr><td>حليب طويل الأمد</td><td>ألبان</td><td>86</td><td>جيد</td></tr>
+      </table>
+    </section>
 
-      <!-- Branches -->
-      <section id="branches" class="page">
-        <div class="grid three">
-          <div class="card"><h2>سترة</h2><p>المبيعات: BD 7,940</p><p><span class="pill amber">تحتاج متابعة</span></p></div>
-          <div class="card"><h2>الجنبية</h2><p>المبيعات: BD 8,520</p><p><span class="pill green">ممتاز</span></p></div>
-          <div class="card"><h2>دمستان</h2><p>المبيعات: BD 5,220</p><p><span class="pill red">تنبيه</span></p></div>
-        </div>
-      </section>
+    <section id="ai" class="page card">
+      <h2>المساعد الذكي</h2>
+      <div id="chat" class="chat">مرحبًا أستاذ زهير، اسألني عن المبيعات أو الفروع أو المخزون.</div>
+      <input id="aiInput" placeholder="مثال: أي فرع يحتاج زيارة اليوم؟">
+      <button class="btn" onclick="askAI()">إرسال</button>
+    </section>
+  </main>
+</div>
 
-      <!-- Tasks -->
-      <section id="tasks" class="page card">
-        <h2>المهام</h2>
-        <div class="form-row">
-          <div class="field"><label>المهمة</label><input placeholder="مثال: مراجعة أسعار قسم الألبان"></div>
-          <div class="field"><label>الفرع</label><select><option>سترة</option><option>الجنبية</option><option>دمستان</option></select></div>
-        </div>
-        <button class="btn" onclick="addTask()">إضافة مهمة</button>
-
-        <table class="table">
-          <tr><th>المهمة</th><th>الفرع</th><th>المسؤول</th><th>الحالة</th></tr>
-          <tr><td>ترتيب قسم الألبان</td><td>سترة</td><td>أحمد</td><td><span class="pill amber">جارية</span></td></tr>
-          <tr><td>تنفيذ عرض Pepsi</td><td>دمستان</td><td>حسن</td><td><span class="pill red">متأخرة</span></td></tr>
-        </table>
-      </section>
-
-      <!-- Inventory -->
-      <section id="inventory" class="page card">
-        <h2>المخزون</h2>
-        <table class="table">
-          <tr><th>المنتج</th><th>القسم</th><th>الكمية</th><th>الحالة</th></tr>
-          <tr><td>مياه نستله</td><td>مشروبات</td><td>12</td><td><span class="pill red">ناقص</span></td></tr>
-          <tr><td>حليب طويل الأمد</td><td>ألبان</td><td>86</td><td><span class="pill green">جيد</span></td></tr>
-          <tr><td>زيت طبخ</td><td>غذائي</td><td>25</td><td><span class="pill amber">متوسط</span></td></tr>
-        </table>
-      </section>
-
-      <!-- Sales -->
-      <section id="sales" class="page card">
-        <h2>المبيعات</h2>
-        <div class="grid kpis">
-          <div class="card kpi"><div class="label">سترة</div><div class="value">7,940</div></div>
-          <div class="card kpi"><div class="label">الجنبية</div><div class="value">8,520</div></div>
-          <div class="card kpi"><div class="label">دمستان</div><div class="value">5,220</div></div>
-          <div class="card kpi"><div class="label">الدراز</div><div class="value">6,180</div></div>
-        </div>
-      </section>
-
-      <!-- Promotions -->
-      <section id="promotions" class="page card">
-        <h2>العروض</h2>
-        <table class="table">
-          <tr><th>العرض</th><th>الشركة</th><th>التاريخ</th><th>الالتزام</th></tr>
-          <tr><td>Flash Deal</td><td>Pepsi</td><td>14</td><td><span class="pill amber">قيد التنفيذ</span></td></tr>
-          <tr><td>Weekend Promo</td><td>Garnier</td><td>24</td><td><span class="pill green">ملتزم</span></td></tr>
-        </table>
-      </section>
-
-      <!-- Reports -->
-      <section id="reports" class="page card">
-        <h2>التقارير</h2>
-        <p>تقارير يومية وأسبوعية وشهرية. التصدير إلى PDF وExcel سيضاف في النسخة القادمة.</p>
-        <button class="btn blue">إنشاء تقرير تجريبي</button>
-      </section>
-
-      <!-- SOP -->
-      <section id="sop" class="page card">
-        <h2>SOP إجراءات التشغيل</h2>
-        <ul>
-          <li>إجراءات فتح وإغلاق الفرع</li>
-          <li>سياسة المرتجعات والموافقات</li>
-          <li>حفظ النقدية والكاش روم</li>
-          <li>تدريب الموظفين على التجييس وخفض الكلفة</li>
-        </ul>
-      </section>
-
-      <!-- AI -->
-      <section id="ai" class="page card">
-        <h2>المساعد الذكي</h2>
-        <div id="chat" class="chat">
-          <div class="msg bot">مرحبًا أستاذ زهير، اسألني عن المبيعات أو الفروع أو المخزون.</div>
-        </div>
-
-        <div class="field">
-          <input id="aiInput" placeholder="مثال: أي فرع يحتاج زيارة اليوم؟">
-        </div>
-
-        <button class="btn" onclick="aiAsk()">إرسال</button>
-      </section>
-
-      <!-- Settings -->
-      <section id="settings" class="page card">
-        <h2>الإعدادات</h2>
-        <div class="form-row">
-          <div class="field"><label>اسم الشركة</label><input value="Retail Manager AI"></div>
-          <div class="field"><label>اللغة</label><select><option>العربية</option><option>English</option></select></div>
-        </div>
-        <button class="btn">حفظ الإعدادات</button>
-      </section>
-
-    </main>
-  </div>
-
-  <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

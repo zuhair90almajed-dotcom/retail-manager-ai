@@ -1,13 +1,5 @@
-# Retail Manager AI
+# Retail Manager AI Clean V2
 
-نسخة منظمة وقابلة للتطوير من نظام Retail Manager AI.
+جاهز للرفع على GitHub وNetlify.
 
-## ملفات المشروع
-
-- `index.html`
-- `css/style.css`
-- `js/app.js`
-
-## بيانات الدخول
-
-admin / 1234
+الدخول: admin / 1234
