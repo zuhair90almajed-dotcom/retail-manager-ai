@@ -7,3 +7,41 @@ function login(e){e.preventDefault();const u=document.getElementById('username')
 function logout(){location.reload()}
 function addTask(){alert('نسخة تجريبية: سيتم ربط إضافة المهام بقاعدة بيانات لاحقاً.')}
 function aiAsk(){const input=document.getElementById('aiInput');const chat=document.getElementById('chat');if(!input.value.trim())return;chat.innerHTML += `<div class="msg user">${input.value}</div>`;chat.innerHTML += `<div class="msg bot">تحليل تجريبي: يوصى بمتابعة فرع سترة اليوم بسبب نقص المشروبات وارتفاع المرتجعات. النسخة القادمة ستربط التحليل ببيانات حقيقية.</div>`;input.value='';chat.scrollTop=chat.scrollHeight}
+function updateClock(){
+
+const now=new Date();
+
+const days=[
+"الأحد",
+"الاثنين",
+"الثلاثاء",
+"الأربعاء",
+"الخميس",
+"الجمعة",
+"السبت"
+];
+
+document.getElementById("todayDate").innerHTML=
+days[now.getDay()]+" "+
+now.toLocaleDateString("ar-BH");
+
+document.getElementById("clock").innerHTML=
+now.toLocaleTimeString("ar-BH");
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+setInterval(function(){
+
+document.getElementById("lastUpdate").innerHTML="قبل لحظات";
+
+},5000);
