@@ -20,3 +20,18 @@ function toggleNotifications(){
     }
 
 }
+function toggleQuickActions(){
+
+    const menu = document.getElementById("quickActions");
+
+    if(menu.style.display==="none"){
+
+        menu.style.display="block";
+
+    }else{
+
+        menu.style.display="none";
+
+    }
+
+}
