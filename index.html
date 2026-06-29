@@ -3,7 +3,24 @@
 <div id="app" class="layout" style="display:none">
 <aside class="sidebar"><div class="logo-box"><div class="avatar">AI</div><div class="side-title">Retail Manager <span>AI</span></div></div><nav class="nav">
 <a href="#" data-page="dashboard" class="active">🏠 لوحة التحكم</a><a href="#" data-page="executive">🎯 مركز القرار</a><a href="#" data-page="employees">👥 الموظفون</a><a href="#" data-page="branches">🏬 الفروع</a><a href="#" data-page="tasks">✅ المهام</a><a href="#" data-page="inventory">📦 المخزون</a><a href="#" data-page="sales">📈 المبيعات</a><a href="#" data-page="promotions">🛒 العروض</a><a href="#" data-page="reports">📄 التقارير</a><a href="#" data-page="sop">📚 SOP</a><a href="#" data-page="ai">🤖 المساعد الذكي</a><a href="#" data-page="settings">⚙️ الإعدادات</a></nav></aside>
-<main class="main"><div class="topbar"><button class="btn secondary mobile-menu" onclick="toggleMenu()">☰</button><div><h1>لوحة التحكم</h1><div class="hint">نظام تجريبي كامل قابل للتطوير لاحقًا</div></div><button class="btn secondary" onclick="logout()">خروج</button></div>
+<main class="main"><div class="topbar-right">
+  <div>
+    <h1 id="welcomeTitle">صباح الخير، أستاذ زهير 👋</h1>
+    <div class="hint">
+      <span id="todayDate"></span> |
+      <span id="clock"></span> |
+      آخر تحديث: <span id="lastUpdate">الآن</span>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:10px;align-items:center;">
+    <button class="btn secondary" onclick="toggleDarkMode()">🌙</button>
+    <div style="background:#fff;padding:10px 15px;border-radius:14px;border:1px solid #ddd;">
+      👤 <b>Zuhair Almajed</b><br>
+      <small>Operations Manager</small>
+    </div>
+  </div>
+</div>
 <section id="dashboard" class="page active"><div class="grid kpis"><div class="card kpi"><div class="label">مبيعات اليوم</div><div class="value">BD 34,250</div><div class="up">+8% عن أمس</div></div><div class="card kpi"><div class="label">العملاء</div><div class="value">2,135</div><div class="up">+4%</div></div><div class="card kpi"><div class="label">المهام المفتوحة</div><div class="value">18</div><div class="up">6 مكتملة اليوم</div></div><div class="card kpi"><div class="label">التنبيهات</div><div class="value">4</div><div class="danger">تحتاج متابعة</div></div></div><br><div class="grid two"><div class="card"><h2>المبيعات الأسبوعية</h2><div class="bars"><div class="bar" style="height:65%"></div><div class="bar" style="height:82%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:72%"></div><div class="bar" style="height:46%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:40%"></div></div></div><div class="card"><h2>تنبيهات المدير</h2><div class="alert"><span>نقص في قسم المشروبات - فرع سترة</span><b class="pill red">عاجل</b></div><div class="alert"><span>تأخير في تنفيذ عروض نهاية الأسبوع</span><b class="pill amber">متابعة</b></div><div class="alert"><span>ارتفاع مرتجعات الكاشير في دمستان</span><b class="pill red">عاجل</b></div><div class="alert"><span>أفضل فرع اليوم: الجنبية</span><b class="pill green">ممتاز</b></div></div></div><br><div class="card"><h2>Heat Map حسب الساعة</h2><div class="heat"><div class="low">08:00<br>منخفض</div><div class="low">09:00<br>منخفض</div><div class="med">11:00<br>متوسط</div><div class="med">13:00<br>متوسط</div><div class="high">18:00<br>مرتفع</div><div class="peak">20:00<br>ذروة</div></div></div></section>
 <section id="executive" class="page"><div class="grid three"><div class="card"><h2>قرار اليوم</h2><p>يوصى بزيارة فرع سترة بسبب انخفاض المبيعات ونقص قسم المشروبات.</p><button class="btn">اعتماد التوصية</button></div><div class="card"><h2>أفضل فرع</h2><p class="value">الجنبية</p><p class="up">BD 8,520</p></div><div class="card"><h2>أضعف فرع</h2><p class="value">دمستان</p><p class="danger">انخفاض 11%</p></div></div></section>
 <section id="employees" class="page card"><h2>الموظفون</h2><table class="table"><tr><th>الاسم</th><th>الرقم</th><th>الفرع</th><th>الوظيفة</th><th>الحالة</th></tr><tr><td>أحمد محمد</td><td>EMP001</td><td>سترة</td><td>كاشير</td><td><span class="pill green">حاضر</span></td></tr><tr><td>حسن علي</td><td>EMP002</td><td>دمستان</td><td>مشرف</td><td><span class="pill amber">متأخر</span></td></tr><tr><td>فاطمة يوسف</td><td>EMP003</td><td>الجنبية</td><td>خدمة زبائن</td><td><span class="pill green">حاضر</span></td></tr></table></section>
